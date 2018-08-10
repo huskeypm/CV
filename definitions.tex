@@ -1,0 +1,414 @@
+%%
+%%
+%%
+%% NOTE: We want to maek this general, so that we cna copy/paste to multiple 
+%% projects (grants, papers) etc 
+%%
+%%
+%%
+
+
+\newcommand\pmid[1]{(PMID \href{https://www.ncbi.nlm.nih.gov/pubmed/#1}{#1})}
+\newcommand\arxiv[1]{(arXiv: 
+\href{https://arxiv.org/abs/#1}{#1})
+}
+
+
+%% 
+%%  Environment
+%% 
+\newenvironment{packed_item}{
+\begin{itemize}
+  \setlength{\itemsep}{1pt}
+  \setlength{\parskip}{0pt}
+  \setlength{\parsep}{0pt}
+}{\end{itemize}}
+\newenvironment{packed_enum}{
+\begin{enumerate}
+  \setlength{\itemsep}{1pt}
+  \setlength{\parskip}{0pt}
+  \setlength{\parsep}{0pt}
+}{\end{enumerate}}
+
+
+
+\newtheorem{rxnpkh}{Reaction}[section]
+
+
+% BEGIN: disable/enable margin notes
+%-->enable margin notes
+  \newcounter{mnote}
+  \setcounter{mnote}{0}
+  \newcommand{\mnote}[1]{\addtocounter{mnote}{1}
+    \ensuremath{{}^{\bullet\arabic{mnote}}}
+    \marginpar{\footnotesize\em\color{red}\ensuremath{\bullet\arabic{mnote}}#1}}
+  \let\oldmarginpar\marginpar
+    \renewcommand\marginpar[1]{\-\oldmarginpar[\raggedleft\footnotesize
+#1]%
+    {\raggedright\footnotesize #1}}
+%-->disable margin notes
+
+
+
+
+%%
+%% SECTIONING
+%% 
+%\titleformat{\subsection}[runin]{\normalfont\normalsize\bfseries\slshape}{\thesubsection.}{0.25em}{}
+%\titlespacing{\subsection}{0.0em}{.5ex}{.5ex} % {left}{before}{after}[right]
+%\titleformat{\subsubsection}[runin]{\normalfont\normalsize\bfseries\slshape}{\thesubsubsection.}{0.25em}{}
+%\titlespacing{\subsubsection}{0.0em}{.5ex}{.5ex} % {left}{before}{after}[right]
+
+
+%%
+%% FIGURES 
+%%
+%% right wrap
+\newcommand{\figright}[3]
+{
+%\begin{figure}
+\begin{wrapfigure}{r}{0.45\textwidth}
+  \vspace{-20pt}
+%\begin{figure}[ht]
+  \begin{center}
+%\includegraphics[width=0.45\textwidth]{#1}
+  \end{center}
+\vspace{-20pt}
+\caption{
+\mynote{figshort:#2}
+\label{figshort:#2}
+\small #3
+}
+  \vspace{-10pt}
+\end{wrapfigure}
+%\end{figure}
+}
+%\renewcommand\figright[3]{\figshort{#1}{#2}{#3}}
+
+%% Quick Figs 
+\newcommand{\figsquick}[4]
+{
+\begin{figure}[ht]
+  \begin{center}
+    \includegraphics[width=#4]{#1}
+  \end{center}
+  \caption{
+\mynote{figshort:#2}
+\label{figshort:#2}
+\small #3
+}
+\end{figure}
+}
+
+\newcommand{\figshort}[3]
+{
+  \figsquick{#1}{#2}{#3}{3in}
+}
+\newcommand{\figbig}[3]
+{
+  \figsquick{#1}{#2}{#3}{7in}
+}
+
+% no figs
+\newcommand{\fignodisplay}[3]
+{
+\begin{figure}[ht]
+\begin{center}
+\end{center}
+\caption{
+\mynote{figshort:#2}
+\label{figshort:#2}
+\small #3
+}
+\end{figure}
+}
+
+
+% Names 
+\newcommand\pnote[1]{\mnote{PKH:#1}}
+\newcommand\sanote[1]{\mnote{SA:#1}}
+\newcommand\aknote[1]{\mnote{AK:#1}}
+\newcommand\bsnote[1]{\mnote{BS:#1}}
+\newcommand\bdsnote[1]{\mnote{BDS:#1}}
+%\linenumbers
+%
+\newcommand{\mynote}[1]{\textcolor{red}{ #1 }}
+
+
+%%%% 
+%%%% Toggle etc 
+%%%%
+\newcommand{\um}{$\mu m$}
+%\renewcommand\figright[3]{\fignodisplay{#1}{#2}{#3}}
+%\renewcommand\figshort[3]{\fignodisplay{#1}{#2}{#3}}
+%\renewcommand\mynote[1]{}
+%\renewcommand\mnote[1]{}
+
+
+%%%%
+%%%% COMMANDS 
+%%%%%
+\newcommand\textbt[1]{\textit{\textbf{#1}}}
+\newcommand\lbi{\begin{packed_item}}
+\newcommand\lei{\end{packed_item}}
+\newcommand\lbn{\begin{packed_enum}}
+\newcommand\len{\end{packed_enum}}
+\newcommand\mytag[1]{\textbf{(#1.)}} % formats subfigure labels
+\newcommand{\fig}{Fig.~\ref}
+\newcommand\sfig[1]{(\textit{See } \fig{#1})}
+\newcommand{\sect}{Sect.~\ref}
+\newcommand\ssect[1]{(\textit{see} \secn{#1} )}
+\newcommand{\tbl}{Table~\ref}
+\newcommand\stbl[1]{(\textit{see} \tbl{#1} )}
+\newcommand{\rxn}{Reaction ~\ref}
+\newcommand{\eqn}{Eq.~\ref}
+\newcommand{\eqns}{Eqs.~\ref}
+\newcommand{\chap}{Chapter~\ref}
+\newcommand{\chaps}{Chapters~\ref}
+\newcommand{\app}{Appendix~\ref}
+
+
+\newacronym{crest}{CREST}{Career Readiness Education in Science and Technology}
+\newcommand\crest{\gls{crest}}
+
+
+\newcommand{\NCX}{NCX}
+\newcommand{\camk}{CaMK}
+\newcommand{\PKA}{[PKA]}
+\newcommand{\SB}{Shannon-Bers}
+\newcommand{\LS}{Li-Smith}
+\newcommand{\wt}{wild-type}
+\newacronym{hpc}{HPC}{high performance computing} 
+\newcommand\hpc{\gls{hpc}}
+\newacronym{pmf}{PMF}{potential of mean force}
+\newcommand\pmf{\gls{pmf}}
+\newacronym{rd}{RD}{regulatory domain}
+\newcommand\rd{\gls{rd}}
+\newacronym{aid}{AID}{auto-inhibitory domain}
+\newcommand\aid{\gls{aid}}
+\newacronym{bd}{BD}{Brownian dynamics}
+\newcommand\bd{\gls{bd}}
+
+\newcommand{\FP}{Fokker\-Plank}
+\newcommand{\SE}{Smoluchowski equation}
+\newcommand{\rde}{Reaction-diffusion equation}
+\newcommand{\uM}{$\mu M$}
+
+\renewcommand{\um}{$\mu m$}
+
+
+
+\newcommand{\DONE}{\textcolor{green}{ Done }}
+\newcommand{\INPROGRESS}{\textcolor{blue}{ In progress }}
+\newcommand{\POSTPONE}{\textcolor{yellow}{ Postpone }}
+\newcommand{\NOTDONE}{\textcolor{red}{ Not Done }}
+\newcommand{\CANCEL}{\textcolor{red}{ Cancel }}
+
+
+\newcommand{\verify}{\mynote{verify}}
+
+
+
+
+
+\newcommand{\AP}{action potential}
+\newcommand{\vcycle}{v$_{cycle}$}
+\newcommand{\kdcasr}{K$_{d,SR}$}
+\newcommand{\kd}{K$_d$}
+\newcommand{\catwo}{Ca$^{2+}$}
+\newcommand{\mgtwo}{Mg$^{2+}$}
+\newcommand{\nap}{Na$^{+}$}
+\newcommand{\kp}{K$^{+}$}
+\newcommand{\caconc}{[Ca$^{2+}$]}
+\newcommand{\koff}{k$_{off}$}
+\newcommand{\kon}{k$_{on}$}
+\newcommand{\konl}{k$_{on,luminal}$}
+\newcommand{\fluo}{Fluo-3}
+
+\newcommand{\BAR}{$\beta$-adrenergic}
+\newcommand{\uplb}{uPLB}
+\newcommand{\pplb}{pPLB}
+
+
+\newcommand{\PDE}{partial differential equation}
+\newcommand{\Kp}{$K_{P}$}
+
+
+%\newacronym{CaMKII}{Ca2+/calmodulin-dependent protein kinase II}
+%{name={CaMKII},description={Ca2+/calmodulin-dependent protein kinase II}}
+%\newcommand{\camk}{CaMKII}
+%
+%\newacronym{PKA}{Protein kinase A}
+%{name={PKA},description={Protein kinase A}}
+%
+%\newacronym{GOF}{gain-of-function}
+%{name={GOF},description={gain-of-function}}    
+%\newacronym{LOF}{loss-of-function}
+%{name={LOF},description={loss-of-function}}    
+%
+%\newacronym{RyR}{Ryanodine receptor}
+%{name={RyR},description={Ryanodine receptor}}
+%
+\newcommand{\newacr}[2]{
+  \newacronym{#1}{#2}
+  {name={#1},description={#2}}
+}
+
+%\newacronym{aid}{AID}{auto-inhibitory domain}
+%\newcommand\aid{\gls{aid}}
+%\newacronym{bd}{BD}{Brownian dynamics}
+%\newcommand\bd{\gls{bd}}
+\newacronym[plural=PPIs]{ppi}{PPI}{protein-protein interactions}
+\newcommand\ppi{\gls{ppi}}
+\newacronym[plural=CBPs]{cbp}{CBP}{Ca-binding protein}
+\newcommand\cbp{\gls{cbp}}
+
+\newacronym{cam}{CaM}{calmodulin}
+\newcommand\cam{\gls{cam}}
+\newacronym{cn}{CaN}{calcineurin}
+\newcommand\cn{\gls{cn}}
+
+\newacronym{tnc}{TnC}{troponin C}
+\newcommand\tnc{\gls{tnc}}
+\newacronym{tn}{Tn}{troponin}
+\newcommand\tn{\gls{tn}}
+\newacronym{tni}{TnI}{troponin I}
+\newcommand\tni{\gls{tni}}
+
+
+% \newacronym{ha}{H$_{\mbox{A}}$}{helix A}
+\newacronym{RMSF}{root mean squared fluctuations}
+{name={RMSF},description={root mean squared fluctuations}}
+\newacronym{RMSD}{root mean squared deviations}
+{name={RMSD},description={root mean squared deviations}}
+
+\newacronym{NMR}{nuclear magnetic resonance}
+{name={NMR},description={nuclear magnetic resonance}}
+%\newacronym{HF}{heart failure}
+%{name={HF},description={heart failure}}
+\newcommand{\HF}{heart failure}
+\newacronym{KO}{knock-out}
+{name={KO},description={knock-out}}
+\newacronym{GPCR}{G-protein coupled receptor}
+{name={GPCR},description={G-protein coupled receptor}}               
+\newacronym{NSR}{non-junctional sarcoplasmic reticulum}
+{name={NSR},description={non-junctional sarcoplasmic reticulum}}
+\newacronym{SSL}{sub-sarcolemmal space}
+{name={SSL},description={sub-sarcolemmal space}}             
+\newacronym{JSR}{junctional sarcoplasmic reticulum}
+{name={JSR},description={junctional sarcoplasmic reticulum}}
+\newacronym{CVM}{cardiac ventricular myocyte}
+{name={CVM},description={Cardiac ventricular myocyte}}
+\newacronym{PCA}{principal components analysis}
+{name={PCA},description={principal components analysis}}       
+%\newacronym{BD}{Brownian dynamics}
+%{name={BD},description={Brownian dynamics}}
+\newacronym{TI}{thermodynamic integration}
+{name={TI},description={thermodynamic integration}}
+\newacronym{PLB}{phospholamban}
+{name={PLB},description={phospholamban}}
+\newacronym{DCM}{diabetic cardiac myopathy}
+{name={DCM},description={Diabetic cardiac myopathy}}
+\newacronym{CHF}{congestive heart failure}
+{name={CHF},description={Congestive heart failure}}
+
+\newacronym{LBD}{ligand-binding domain}
+{name={LBD},description={Ligand-binding domain}}
+\newacronym{TM}{transmembrane}
+{name={TM},description={Transmembrane}}
+\newacronym{EAD}{early after-depolarization}
+{name={EAD},description={Early after-depolarization}}
+\newcommand{\DAD}{delayed after-depolarization}
+%\newacronym{DAD}{delayed after-depolarization}
+%{name={DAD},description={Delayed after-depolarization}}
+
+\newcommand\WT{wild-type}
+\newacronym{nmr}{NMR}{nuclear magnetic resonance}
+\newcommand\nmr{\gls{nmr}}
+
+
+
+%\newcommand\NMR{\gls{nmr}}
+
+\newacronym{fem}{FEM}{finite element method} 
+\newcommand{\fem}{\gls{fem}}
+\newacronym{remd}{REMD}{replica exchange molecular dynamics}
+\newcommand{\remd}{\gls{remd}}
+ 
+\newacronym{md}{MD}{molecular dynamics}
+\newcommand\md{\gls{md}}
+\newacronym{AMD}{AMD}{accelerated molecular dynamics}
+\newacronym{pnp}{PNP}{Poisson-Nernst-Planck}
+\newcommand\pnp{\gls{pnp}}
+\newacronym{msa}{MSA}{mean spherical approximation}
+\newcommand\msa{\gls{msa}}
+\newacronym{gb}{GB}{Generalized Born}
+\newcommand\gb{\gls{gb}}
+
+\newacronym{fft}{FFT}{fast Fourier transform}
+\newcommand\fft{\gls{fft}}
+
+
+
+\newacronym{fret}{FRET}{Forster resonance energy transfer}
+\newcommand\fret{\gls{fret}}
+
+\newcommand{\SLN}{sarcolipin}
+\newcommand{\rdf}{radial distribution function} 
+\newcommand{\vmax}{$V_{max}$}
+\newcommand{\dgelec}{$\Delta G_{elec}$}
+\newcommand\sone{S100A1}
+
+\newacronym{pv}{PV}{parvalbumin}
+\newcommand\pv{\gls{pv}}
+\newcommand\bpv{$\beta$-\pv} 
+\newcommand\apv{$\alpha$-\pv} 
+\newcommand\cEF{cEF} 
+\newcommand\pEF{pEF} 
+\newcommand{\fenics}{FEniCS}
+
+\newcommand\hn{H$_{\mbox{N}}$}
+\newacronym{ha}{H$_{\mbox{A}}$}{helix A}
+\newcommand\ha{\gls{ha}}
+\newacronym{hb}{H$_{\mbox{B}}$}{helix B}
+\newcommand\hb{\gls{hb}}
+\newacronym{hc}{H$_{\mbox{C}}$}{helix C}
+\newcommand\hc{\gls{hc}}
+\newacronym{hd}{H$_{\mbox{D}}$}{helix D}
+\newcommand\hd{\gls{hd}}
+\newacronym{he}{H$_{\mbox{E}}$}{helix E}
+\newcommand\he{\gls{he}}
+\newacronym{hf}{H$_{\mbox{F}}$}{helix F}
+\newcommand\hf{\gls{hf}}
+\newcommand\lcd{L$_{\mbox{CD}}$}
+\newcommand\lef{L$_{\mbox{EF}}$}
+\newcommand\calpha{C$_\alpha$}
+
+\newcommand\addref{\mnote{add ref}}
+\newcommand\addrefn[1]{\mnote{Ref #1}}
+
+
+\newacronym{glu}{E}{glutamic acid}
+\newcommand\glu{\gls{glu}}
+\newacronym{ser}{S}{serine}
+\newcommand\ser{\gls{ser}}
+\newacronym{lys}{K}{lysine}
+\newcommand\lys{\gls{lys}}
+\newacronym{asp}{D}{aspartic acid}
+\newcommand\asp{\gls{asp}}
+\newacronym{tyr}{Y}{tyrosine}
+\newcommand\tyr{\gls{tyr}}
+\newacronym{gly}{G}{glycine}
+\newcommand\gly{\gls{gly}}
+
+
+
+
+\newacronym[plural={root mean square fluctuations}]{rmsf}{RMSF}{root mean squared fluctuations}
+\newcommand\rmsf{\gls{rmsf}}
+\newacronym{rmsd}{RMSD}{root mean squared deviations}
+\newcommand\rmsd{\gls{rmsd}}
+
+\newacronym{bscc}{BSCC}{Big Sandy Community College}
+\newcommand\bscc{\gls{bscc}}
+

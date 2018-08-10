@@ -1,0 +1,64 @@
+% Long Sectioned Curriculum Vitae
+% LaTeX Template
+%
+% This template has been downloaded from:
+% http://www.latextemplates.com
+%
+% Original author:
+% Rensselaer Polytechnic Institute (http://www.rpi.edu/dept/arc/training/latex/resumes/)
+%
+% Important note:
+% This template requires the res.cls file to be in the same directory as the
+% .tex file. The res.cls file provides the resume style used for structuring the
+% document.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass{res} % Use the res.cls style
+
+%%%% For biosketch sections
+% Initially had to compile as 'article' to get bibs to work 
+%\documentclass{article}
+\usepackage[T1]{fontenc}
+\usepackage[colorlinks = true,
+            linkcolor = blue,
+            urlcolor  = blue,
+            citecolor = blue,
+            anchorcolor = blue]{hyperref}
+%\usepackage[utf8]{inputenc}
+\usepackage{xcolor}
+\usepackage{lmodern}
+\usepackage[english]{babel}
+\usepackage[autostyle]{csquotes}
+\usepackage{glossaries}
+\usepackage{verbatim}
+%\usepackage[sorting=none, backend=biber]{biblatex}
+% Initially had to compile as 'article' to get bibs to work 
+\usepackage[backend=biber,doi=false,url=false,autocite=superscript,sorting=none,firstinits=true,style=numeric-comp]{biblatex}
+\addbibresource{pkh.bib}
+\newcommand{\x}[1]{ } % CLUDGY HACK TO GET BIBER TO WORK ON STUPID UNICODE CHARACTERS
+
+%%%%
+\usepackage{helvet} % Default font is the helvetica postscript font
+%\usepackage{newcent} % To change the default font to the new century schoolbook postscript font uncomment this line and comment the one aboveHolly
+\usepackage{etaremune}
+\usepackage{xkeyval}
+
+%\newsectionwidth{0pt} % Stops section indenting
+
+\begin{document}
+\input{definitions}
+% For CV 
+\input{cv_body}
+%\input{cv_body_short}
+% For biosketch
+%\input{biosketch_sections} % NEED TO COMPILE AS ARTICLE
+
+% NSF 
+%\input{nsfbio}
+
+\end{document}
